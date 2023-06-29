@@ -3,3 +3,11 @@
 
 ## Itnore director named pycace
 /__pycache__/**.pyc
+
+## Ignore large files like bam
+**.bam
+
+## Ignore .DS_store files
+**.DS_Store
+
+## End of file 
