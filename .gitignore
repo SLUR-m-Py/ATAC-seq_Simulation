@@ -1,0 +1,5 @@
+## Ignore .pyc files
+**.pyc
+
+## Itnore director named pycace
+/__pycache__/**.pyc
