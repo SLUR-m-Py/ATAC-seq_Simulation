@@ -1,0 +1,95 @@
+################################################
+##########      SLURPY PIPELINE      ###########
+################################################
+
+INFO:	Pipeline run name: ENCLB293SLX
+	Experiment type: atac
+	Reference path: ../../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Sun Nov 20 12:12:11 2022
+
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/ENCLB293SLX_0_R1_001.fastq.gz
+	./fastqs/ENCLB293SLX_0_R2_001.fastq.gz
+
+
+------  Read Filtering and Splitting  ------
+
+INFO: 0 split pair-end fastqs and log - ./debug/ENCLB293SLX_0.fastp.splits.ENCLB293SLX.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+WARNING: 1 sets of paried reads were detected but no calls to fastp were submitted to the shell.
+	If this was expected, ignore this message.
+	Otherwise remove the ./splits directory and try again.
+INFO: The number of paired-end reads within pair 1 is: 67263926
+
+---------  Alignment with BWA-mem  ---------
+
+WARNING: No paired fastq files were detected.
+WARNING: No paired fastq files were detected.
+WARNING: 1 sets of paried reads were detected but no calls to bwa-mem were submitted to the shell.
+	If this was expected, ignore this message.
+	Otherwise remove the ./splits directory and log files of the splits and try again.
+
+--------  Splitting BAM Alignments  --------
+
+INFO: Formating and submitting commands to split alignments and generate bam files.
+WARNING: No bams were selected for splitting and filtering on mitochondrial DNA and mapping.
+
+--------  Merging Split Alignments  --------
+
+INFO: Formating and submitting commands to merge bam files by mitochondiral and genomic alignments and unmapped reads.
+INFO: Detected merged bam file: ./aligned/merged.ENCLB293SLX.bam
+INFO: Detected merged bam file: ./aligned/merged.ENCLB293SLX.unmapped.bam
+INFO: Detected merged bam file: ./aligned/merged.ENCLB293SLX.chrM.bam
+
+-----------  Duplicate Marking  ------------
+
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+INFO: Detected duplicate marked bam file: ./aligned/merged.ENCLB293SLX.mark.bam
+
+-----------  BAM File Filtering  -----------
+
+INFO: Formating and submitting commands to filter merged bam files with samtools flags: -f 2 -F 4 -F 8 -F 256 -F 512 -F 1024 -F 2048 -q 30
+INFO: Detected filtered bam file: ./aligned/merged.ENCLB293SLX.no_dups.bam
+INFO: Detected filtered bam file: ./aligned/merged.ENCLB293SLX.dups.bam
+
+-----------  Pruning BAM Files  ------------
+
+INFO: Formating and submitting commands to prune not used alignments.
+
+-------  Genome-wide Mapping Results  ------
+
+INFO:	BAM file totals:
+
+	Total: 67263926 ( - )
+	filtq30: 55152003 ( 81.99 )
+	notused: 6718663 ( 9.99 )
+	chrM: 753542 ( 1.12 )
+	dups: 2685741 ( 3.99 )
+	unmapped: 286519 ( 0.43 )
+	lowqual: 1667458 ( 2.48 )
+
+INFO: These counts do not include reads removed due to low quality by fastp.
+INFO: The percent of mapped reads: 97.1 %
+
+----------------  Plotting  ----------------
+
+INFO: Generating quality control plots.
+
+--------------  Peak Calling  --------------
+
+INFO: 262583 -- Total peaks called by macs2.
+INFO: 166239 -- Unique loci called by mcas2.
+INFO: The frip score of merged.ENCLB293SLX.filtq30.bam with peaks in ENCLB293SLX_peaks.narrowPeak is:
+	0.474
+
+----------------  Clean Up  ----------------
+
+INFO: Finished removing split fastq files, temporary bam files, and redundent bam files.
+
+----------------  Finished  ----------------
+
+INFO: End time: Sun Nov 20 12:26:28 2022
+INFO: Total run time (seconds): 857.33

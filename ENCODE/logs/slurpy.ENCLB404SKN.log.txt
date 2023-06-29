@@ -1,0 +1,116 @@
+################################################
+##########      SLURPY PIPELINE      ###########
+################################################
+
+INFO:	Pipeline run name: ENCLB404SKN
+	Experiment type: atac
+	Reference path: ../../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Sun Nov 20 12:00:04 2022
+
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/ENCLB404SKN_0_R1_001.fastq.gz
+	./fastqs/ENCLB404SKN_0_R2_001.fastq.gz
+
+	./fastqs/ENCLB404SKN_1_R1_002.fastq.gz
+	./fastqs/ENCLB404SKN_1_R2_002.fastq.gz
+
+	./fastqs/ENCLB404SKN_2_R1_003.fastq.gz
+	./fastqs/ENCLB404SKN_2_R2_003.fastq.gz
+
+	./fastqs/ENCLB404SKN_3_R1_004.fastq.gz
+	./fastqs/ENCLB404SKN_3_R2_004.fastq.gz
+
+
+------  Read Filtering and Splitting  ------
+
+INFO: 0 split pair-end fastqs and log - ./debug/ENCLB404SKN_0.fastp.splits.ENCLB404SKN.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: 0 split pair-end fastqs and log - ./debug/ENCLB404SKN_1.fastp.splits.ENCLB404SKN.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: 0 split pair-end fastqs and log - ./debug/ENCLB404SKN_2.fastp.splits.ENCLB404SKN.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: 0 split pair-end fastqs and log - ./debug/ENCLB404SKN_3.fastp.splits.ENCLB404SKN.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+WARNING: 4 sets of paried reads were detected but no calls to fastp were submitted to the shell.
+	If this was expected, ignore this message.
+	Otherwise remove the ./splits directory and try again.
+INFO: The number of paired-end reads within pair 1 is: 84005884
+INFO: The number of paired-end reads within pair 2 is: 84313166
+INFO: The number of paired-end reads within pair 3 is: 85602312
+INFO: The number of paired-end reads within pair 4 is: 87404474
+
+---------  Alignment with BWA-mem  ---------
+
+WARNING: No paired fastq files were detected.
+WARNING: No paired fastq files were detected.
+WARNING: 4 sets of paried reads were detected but no calls to bwa-mem were submitted to the shell.
+	If this was expected, ignore this message.
+	Otherwise remove the ./splits directory and log files of the splits and try again.
+
+--------  Splitting BAM Alignments  --------
+
+INFO: Formating and submitting commands to split alignments and generate bam files.
+WARNING: No bams were selected for splitting and filtering on mitochondrial DNA and mapping.
+
+--------  Merging Split Alignments  --------
+
+INFO: Formating and submitting commands to merge bam files by mitochondiral and genomic alignments and unmapped reads.
+INFO: Detected merged bam file: ./aligned/merged.ENCLB404SKN.bam
+INFO: Detected merged bam file: ./aligned/merged.ENCLB404SKN.unmapped.bam
+INFO: Detected merged bam file: ./aligned/merged.ENCLB404SKN.chrM.bam
+
+-----------  Duplicate Marking  ------------
+
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+INFO: Detected duplicate marked bam file: ./aligned/merged.ENCLB404SKN.mark.bam
+
+-----------  BAM File Filtering  -----------
+
+INFO: Formating and submitting commands to filter merged bam files with samtools flags: -f 2 -F 4 -F 8 -F 256 -F 512 -F 1024 -F 2048 -q 30
+INFO: Detected filtered bam file: ./aligned/merged.ENCLB404SKN.no_dups.bam
+INFO: Detected filtered bam file: ./aligned/merged.ENCLB404SKN.dups.bam
+
+-----------  Pruning BAM Files  ------------
+
+INFO: Formating and submitting commands to prune not used alignments.
+
+-------  Genome-wide Mapping Results  ------
+
+INFO:	BAM file totals:
+
+	Total: 341325836 ( - )
+	filtq30: 259029456 ( 75.89 )
+	notused: 21246814 ( 6.22 )
+	chrM: 12009324 ( 3.52 )
+	dups: 46948944 ( 13.75 )
+	unmapped: 408486 ( 0.12 )
+	lowqual: 1682812 ( 0.49 )
+
+INFO: These counts do not include reads removed due to low quality by fastp.
+INFO: The percent of mapped reads: 99.39 %
+
+----------------  Plotting  ----------------
+
+INFO: Generating quality control plots.
+
+--------------  Peak Calling  --------------
+
+INFO: 684041 -- Total peaks called by macs2.
+INFO: 201532 -- Unique loci called by mcas2.
+INFO: The frip score of merged.ENCLB404SKN.filtq30.bam with peaks in ENCLB404SKN_peaks.narrowPeak is:
+	0.5898
+
+----------------  Clean Up  ----------------
+
+INFO: Finished removing split fastq files, temporary bam files, and redundent bam files.
+
+----------------  Finished  ----------------
+
+INFO: End time: Sun Nov 20 12:50:34 2022
+INFO: Total run time (seconds): 3029.61
