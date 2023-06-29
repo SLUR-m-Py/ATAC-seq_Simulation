@@ -2,7 +2,8 @@
 **.pyc
 
 ## Itnore director named pycace
-/__pycache__/**.pyc
+NOTEBOOK/__pycache__/**.pyc
+NOTEBOOK/.ipynb_checkpoints
 
 ## Ignore large files like bam
 **.bam
