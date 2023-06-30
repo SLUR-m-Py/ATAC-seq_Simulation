@@ -12,4 +12,11 @@ NOTEBOOKS/.ipynb_checkpoints
 **.DS_Store
 .DS_Store
 
+## Itnore .csv files within data
+DATA/*.csv
+
+## Ignore pngs and pdfs made in figures other than the one in there 
+FIGURES/*.png
+FIGURES/*.pdf
+
 ## End of file 
