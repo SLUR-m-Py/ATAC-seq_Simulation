@@ -17,7 +17,7 @@ Jupyter notebooks and pythonic scripts used for simultaions, analysis, and visul
 
 ### Sequenced read archive
 
-[Link to associated bioproject](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP439236&o=acc_s%3Aa)
+[Link to associated sequence read archive run selector](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP439236&o=acc_s%3Aa)
 
 ### BioRxiv
 
