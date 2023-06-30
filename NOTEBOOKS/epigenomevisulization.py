@@ -37,6 +37,81 @@ def sortglob(wc):
     ## Return the sorted glob of the wild card path 
     return sorted(glob(wc))
 
+## Ftn for loading log
+def loadlog(inpath):
+    """Loads in and returns a log file."""
+    ## Open with with
+    with open(inpath,'r') as infile:
+        data = infile.readlines()
+        
+    ## Return the data
+    return data
+
+## Deftn for parsing a log
+def readstats(inpath):
+    """Splits an input log file on path"""
+    ## Return the split log
+    return [k[:-1].split('\t') for k in loadlog(inpath)]
+
+## Ftn for getting sample name 
+def setsample(inpath):
+    return inpath.split('/')[-1].split('.')[1]
+
+## Ftn for making a dataframe
+def dataframe(inpath):
+    """Loads in mapping stats file and formats into a dataframe."""
+    ## Make a temporary dataframe
+    temp = pd.DataFrame(readstats(inpath))
+    
+    ## Set the sample name
+    samplename = setsample(inpath)
+        
+    ## Set column names
+    temp.columns = ['Mapping','Count_%s'%samplename,'Percent_%s'%samplename]
+    
+    ## Set the mapping as the index
+    temp.index = temp.Mapping
+    
+    ## return the dataframe
+    return temp
+
+## Ftn for formating dataframe 
+def formatdfs(inpaths):
+    """Formats a dataframe values making percentages."""
+    ## Load in dataframes, and initilzse list
+    dfs,formatted  = [dataframe(p) for p in inpaths], []
+    
+    ## Iterate thru the dataframes
+    for d in dfs:
+        ## Set the last column
+        s = d.columns[-1].split('Percent_')[-1]
+    
+        ## Format the column
+        #d[s] = [ ('%s ( %s %s ) '%(r[d.columns[-2]],r[d.columns[-1]],'%') if j > 0 else r[d.columns[-2]]) for j,(i,r) in enumerate(d.iterrows())]
+        d[s] = [r[d.columns[-2]] for j,(i,r) in enumerate(d.iterrows())]
+        
+        ## Append a copy of thta datframe
+        formatted.append(d[[d.columns[-1]]].copy())
+
+    ## return a concatinated list
+    return pd.concat(formatted,axis=1).T
+
+## Ftn for getting loc
+def extractloci(inpath):
+    return [int(k.split(' ')[1]) for k in loadlog(inpath) if 'Unique loci' in k][-1]
+
+## Ftn for getting Frip score
+def extractfrip(inpath):
+    tmp = loadlog(inpath)
+    frip_ix = [i+1 for i,l in enumerate(tmp) if 'INFO: The frip score' in l][0]
+    return float(tmp[frip_ix][:-1].split('\t')[-1])
+
+## Ftn for getting the number of unique loci per file
+def getloci(inpaths):
+    """Parses a run log to return the unique loci mapped via macs2."""
+    ## Return the loci counts
+    return pd.DataFrame([( setsample(l) , extractloci(l), extractfrip(l)) for l in inpaths], columns = ['Replicate','Loci','FrIP'])
+
 ## Ftn for getting just the upper tri
 def undermask(df):
     ## Set a matrix on ones 
@@ -47,6 +122,14 @@ def undermask(df):
     temp = np.concatenate(df.mask(~mask).values)
     ## Return the upper empty 
     return temp[~(np.isnan(temp))]
+
+def loadbdg(inpath,chrom,left,right):
+    
+    temp = pd.read_csv(inpath,sep='\t',names=['Chrom','Start','End','FpKM'])
+    temp = temp[(temp.Chrom==chrom)]
+    temp['Meanpos'] = temp[['Start','End']].T.mean()
+    temp = temp[(temp.Meanpos>=left) & (temp.Meanpos<=right)]
+    return temp
 
 ## Ftn for checking if an object is not none type
 def notnone(obj):
@@ -125,3 +208,38 @@ def cometplot(x,y,plotmod=10,figsize=(6,5),ax=None,cbar_label='log$_{10}$ ( WFpk
 
     ## Return the ax
     return ax
+
+## WRite a ftn for plotting genes
+def plotgene(gdf,y=0,lw=0.5,exonmod=5,ymod=0.05,fs=8):
+    
+    y = round(y,1)
+    
+    ## Gather the gene
+    gene = gdf.Gene.min()
+    
+    ## Gather the strand
+    strand = gdf[(gdf.Feature=='gene')].Strand.min()
+
+    ## Color the gene by strand orientation
+    color = 'tab:red' if strand == '-' else 'k'
+    
+    ## Plot the gene body
+    plt.hlines(y,gdf.Start.min(),gdf.End.max(),linewidth=lw,color=color)
+    
+    ## Plot the exons
+    exons = gdf[(gdf.Feature=='exon')]
+    
+    ## Iterate thru the exons
+    [plt.hlines(y,j.Start,j.End,linewidth=lw*exonmod,color=color) for i,j in exons.iterrows()]
+        
+    ## Annotate the gene
+    if strand == '-':
+        plt.text(x=gdf.End.max(), y = y, s = gene, color = color, va='center',ha='left',fontsize=fs)
+        
+    else:
+        plt.text(x=gdf.Start.min(), y = y, s = gene, color = color, va='center',ha='right',fontsize=fs)
+        
+    
+    pass
+
+## End of file 
