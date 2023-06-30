@@ -2,12 +2,23 @@
 
 Code and Data for _Improved Quality Metrics for Association and Reproducibility in Chromatin Accessibility Data Using Mutual Information_
 
-# External Links
+## Folder Descriptions
 
-## Sequenced read archive
+### Data
+Contains data from simulations or generated dataframes, used as raw input into visulizations and analysis. 
 
-[Link to associated bioproject](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA975595)
+### Figures
+Directory for storing generated figures.
 
-## BioRxiv
+### Notebooks
+Jupyter notebooks and pythonic scripts used for simultaions, analysis, and visulizations.
+
+## External Links
+
+### Sequenced read archive
+
+[Link to associated bioproject](https://www.ncbi.nlm.nih.gov/Traces/study/?acc=SRP439236&o=acc_s%3Aa)
+
+### BioRxiv
 
 [Link to preprint on bioRxiv](https://www.biorxiv.org/content/10.1101/2023.04.26.538354v2)
