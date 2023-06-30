@@ -1,0 +1,94 @@
+################################################
+##########      SLURPY PIPELINE      ###########
+################################################
+
+INFO:	Pipeline run name: 2501_008
+	Experiment type: atac
+	Reference path: ../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Sun Dec  4 15:22:03 2022
+
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/2501_008-N703-N502__AGGCAGAA-CTCTCTAT__S10_R1_001.fastq.gz
+	./fastqs/2501_008-N703-N502__AGGCAGAA-CTCTCTAT__S10_R2_001.fastq.gz
+
+
+------  Read Filtering and Splitting  ------
+
+INFO: Splitting input pair-end fastq via fastp.
+INFO: The number of paired-end reads within pair 1 is: 69273610
+
+---------  Alignment with BWA-mem  ---------
+
+INFO: Found properly paired reads.
+INFO: Found properly paired reads.
+
+--------  Splitting BAM Alignments  --------
+
+INFO: Formating and submitting commands to split alignments and generate bam files.
+
+--------  Merging Split Alignments  --------
+
+INFO: Formating and submitting commands to merge bam files by mitochondiral and genomic alignments and unmapped reads.
+
+-----------  Duplicate Marking  ------------
+
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+samblaster: Version 0.1.26
+samblaster: Inputting from stdin
+samblaster: Outputting to stdout
+samblaster: Loaded 25 header sequence entries.
+samblaster: Found         4646 of    9752043 (0.048%) total read ids are marked paired yet are unmated.
+samblaster: Please double check that input file is read-id (QNAME) grouped.
+samblaster: Found        18147 of    9752043 (0.186%) total read ids with no primary alignment.
+samblaster: Please double check that input file is read-id (QNAME) grouped.
+samblaster:
+samblaster: Pair Type        Type_ID_Count   %Type/All_IDs Dup_ID_Count  %Dups/Type_ID_Count  %Dups/All_Dups  %Dups/All_IDs
+samblaster: ---------------------------------------------------------------------------------------------------------------
+samblaster: Orphan/Singleton       496298         5.089          85015          17.130             9.116          0.872
+samblaster: Both Mapped           9232952        94.677         847594           9.180            90.884          8.691
+samblaster: Total                 9752043       100.000         932609           9.563           100.000          9.563
+samblaster:
+samblaster: Marked      932609 of    9752043 (9.563%) total read ids as duplicates using 180448k memory in 32.132S CPU seconds and 1M16S(76S) wall time.
+
+-----------  BAM File Filtering  -----------
+
+INFO: Formating and submitting commands to filter merged bam files with samtools flags: -f 2 -F 4 -F 8 -F 256 -F 512 -F 1024 -F 2048 -q 30
+
+-----------  Pruning BAM Files  ------------
+
+INFO: Formating and submitting commands to prune not used alignments.
+
+-------  Genome-wide Mapping Results  ------
+
+INFO:	BAM file totals:
+
+	Total: 69273610 ( - )
+	filtq30: 15377297 ( 22.2 )
+	notused: 1834370 ( 2.65 )
+	chrM: 48556785 ( 70.09 )
+	dups: 1780806 ( 2.57 )
+	unmapped: 27699 ( 0.04 )
+	lowqual: 1696653 ( 2.45 )
+INFO: The percent of mapped reads: 97.51 %
+
+----------------  Plotting  ----------------
+
+INFO: Generating quality control plots.
+
+--------------  Peak Calling  --------------
+
+INFO: 95111 -- Total peaks called by macs2.
+INFO: 79933 -- Unique loci called by mcas2.
+INFO: The frip score of merged.2501_008.filtq30.bam with peaks in 2501_008_peaks.narrowPeak is:
+	0.4202
+
+----------------  Clean Up  ----------------
+
+INFO: Finished removing split fastq files, temporary bam files, and redundent bam files.
+
+----------------  Finished  ----------------
+
+INFO: End time: Sun Dec  4 15:56:20 2022
+INFO: Total run time (seconds): 2057.22

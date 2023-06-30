@@ -1,3 +1,14 @@
+"""
+© 2023. Triad National Security, LLC. All rights reserved.
+This program was produced under U.S. Government contract 89233218CNA000001 for Los Alamos
+National Laboratory (LANL), which is operated by Triad National Security, LLC for the U.S.
+Department of Energy/National Nuclear Security Administration. All rights in the program are
+reserved by Triad National Security, LLC, and the U.S. Department of Energy/National Nuclear
+Security Administration. The Government is granted for itself and others acting on its behalf a
+nonexclusive, paid-up, irrevocable worldwide license in this material to reproduce, prepare
+derivative works, distribute copies to the public, perform publicly and display publicly, 
+and to permit others to do so.
+"""
 ################################################
 ###    Comet Plot Protocol & Visulization    ###
 ################################################
@@ -17,6 +28,25 @@ import pandas as pd, numpy as np
 
 ## Load in matploitlib for plotting
 from matplotlib import pyplot as plt
+
+## Load in glob
+from glob import glob 
+
+## Ftn for setting wc path
+def sortglob(wc):
+    ## Return the sorted glob of the wild card path 
+    return sorted(glob(wc))
+
+## Ftn for getting just the upper tri
+def undermask(df):
+    ## Set a matrix on ones 
+    mask = np.ones(df.shape,dtype='bool')
+    ## Set the upper triangle index to false 
+    mask[np.triu_indices(len(df))] = False
+    ## Concat the mask 
+    temp = np.concatenate(df.mask(~mask).values)
+    ## Return the upper empty 
+    return temp[~(np.isnan(temp))]
 
 ## Ftn for checking if an object is not none type
 def notnone(obj):

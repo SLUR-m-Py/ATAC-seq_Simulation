@@ -1,0 +1,282 @@
+################################################
+########%!       SLURPY PIPELINE      !%########
+################################################
+
+INFO:	Pipeline run name: 2501_018
+	Experiment type: atac
+	Reference path: ../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Fri Jan 27 22:01:32 2023
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R1_001.fastq.gz
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R2_001.fastq.gz
+
+------  Read Filtering and Splitting  ------
+INFO: The number of paired-end reads within pair 1 is: 86963986
+
+---------  Alignment with BWA-mem  ---------
+INFO: Found properly paired reads.
+INFO: Found properly paired reads.
+
+--------  Splitting BAM Alignments  --------
+INFO: Formating and submitting commands to split alignments and generate bam files.
+
+--------  Merging Split Alignments  --------
+INFO: Formating and submitting commands to merge bam files by mitochondiral and genomic alignments and unmapped reads.
+
+-----------  Duplicate Marking  ------------
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+samblaster: Version 0.1.26
+samblaster: Inputting from stdin
+samblaster: Outputting to stdout
+samblaster: Loaded 25 header sequence entries.
+samblaster: Found            0 of   27079216 (0.000%) total read ids are marked paired yet are unmated.
+samblaster:
+samblaster: Pair Type        Type_ID_Count   %Type/All_IDs Dup_ID_Count  %Dups/Type_ID_Count  %Dups/All_Dups  %Dups/All_IDs
+samblaster: ---------------------------------------------------------------------------------------------------------------
+samblaster: Orphan/Singleton      1089592         4.024         209825          19.257             7.096          0.775
+samblaster: Both Mapped          25989624        95.976        2746976          10.570            92.904         10.144
+samblaster: Total                27079216       100.000        2956801          10.919           100.000         10.919
+samblaster:
+
+-----------  BAM File Filtering  -----------
+INFO: Formating and submitting commands to filter merged bam files with samtools.
+
+-----------  Pruning BAM Files  ------------
+INFO: Formating and submitting commands to prune not used alignments.
+
+-------  Genome-wide Mapping Results  ------
+INFO:	BAM file totals:
+
+	Total: 86963986 ( - )
+	filtq30: 42567716 ( 48.9487 )
+	notused: 4788405 ( 5.5062 )
+	dups: 5703777 ( 6.5588 )
+	chrM: 31620108 ( 36.36 )
+	unmapped: 117296 ( 0.1349 )
+	placed: 3732 ( 0.0043 )
+	lowqual: 2162952 ( 2.4872 )
+INFO: The percent of mapped reads: 97.38 %
+
+----------------  Plotting  ----------------
+INFO: Generating quality control plots.
+
+--------------  Peak Calling  --------------
+INFO: 155210 -- Total peaks called by macs2.
+INFO: 85614 -- Unique loci called by mcas2.
+INFO: The frip score of merged.2501_018.filtq30.bam with peaks in 2501_018_peaks.narrowPeak is:
+	0.636
+
+----------------  Clean Up  ----------------
+INFO: Finished removing split fastq files, temporary bam files, and redundent bam files.
+
+----------------  Finished  ----------------
+INFO: End time: Fri Jan 27 22:46:23 2023
+INFO: Total run time (hours): 0.75
+################################################
+########%!       SLURPY PIPELINE      !%########
+################################################
+
+INFO:	Pipeline run name: 2501_018
+	Experiment type: atac
+	Reference path: ../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Tue Mar 14 09:38:24 2023
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R1_001.fastq.gz
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R2_001.fastq.gz
+
+------  Read Filtering and Splitting  ------
+INFO: 0 split pair-end fastqs and log - ./debug/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13.fastp.splits.2501_018.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: The total number of reads within pair 1 is: 86963986
+
+---------  Alignment with BWA-mem  ---------
+WARNING: No paired fastq files were detected.
+WARNING: No paired fastq files were detected.
+
+--------  Splitting BAM Alignments  --------
+INFO: Formating and submitting commands to split alignments and generate bam files.
+
+--------  Merging Split Alignments  --------
+INFO: Formating and submitting commands to merge bam files by:
+	mitochondiral alignments
+	genomic pairs
+	
+	unmapped (or placed) reads
+
+-----------  Duplicate Marking  ------------
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+INFO: Detected duplicate marked bam file: ./aligned/merged.2501_018.mark.bam
+
+-----------  BAM File Filtering  -----------
+INFO: Formating and submitting commands to filter merged bam files with samtools.
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.no_dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.filtq30.bam
+WARNING: Skipping bam file creation and filtering.
+-----------  Pruning BAM Files  ------------
+INFO: Formating and submitting commands to prune not used alignments.
+WARNING: Skipping file removal on: ./aligned/merged.2501_018.dups.bam
+WARNING: The count file -- ./debug/merged.2501_018.filtq30.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.notused.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.dups.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.chrM.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.unmapped.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.placed.read.counts.txt -- was found, skipping the counting of its bam.
+ERROR: The run was halted due to critical error!
+Check run log in debug!
+################################################
+########%!       SLURPY PIPELINE      !%########
+################################################
+
+INFO:	Pipeline run name: 2501_018
+	Experiment type: atac
+	Reference path: ../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Tue Mar 14 09:55:02 2023
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R1_001.fastq.gz
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R2_001.fastq.gz
+
+------  Read Filtering and Splitting  ------
+INFO: 0 split pair-end fastqs and log - ./debug/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13.fastp.splits.2501_018.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: The total number of reads within pair 1 is: 86963986
+
+---------  Alignment with BWA-mem  ---------
+WARNING: No paired fastq files were detected.
+WARNING: No paired fastq files were detected.
+
+--------  Splitting BAM Alignments  --------
+INFO: Formating and submitting commands to split alignments and generate bam files.
+
+--------  Merging Split Alignments  --------
+INFO: Formating and submitting commands to merge bam files by:
+	mitochondiral alignments
+	genomic pairs
+	
+	unmapped (or placed) reads
+
+-----------  Duplicate Marking  ------------
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+INFO: Detected duplicate marked bam file: ./aligned/merged.2501_018.mark.bam
+
+-----------  BAM File Filtering  -----------
+INFO: Formating and submitting commands to filter merged bam files with samtools.
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.no_dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.filtq30.bam
+WARNING: Skipping bam file creation and filtering.
+-----------  Pruning BAM Files  ------------
+INFO: Formating and submitting commands to prune not used alignments.
+WARNING: Skipping file removal on: ./aligned/merged.2501_018.dups.bam
+WARNING: The count file -- ./debug/merged.2501_018.filtq30.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.notused.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.dups.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.chrM.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.unmapped.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.placed.read.counts.txt -- was found, skipping the counting of its bam.
+
+-------  Genome-wide Mapping Results  ------
+INFO:	BAM file totals:
+
+	Total: 86963986 ( - )
+	filtq30: 42567716 ( 48.9487 )
+	notused: 4788405 ( 5.5062 )
+	dups: 5703777 ( 6.5588 )
+	chrM: 31620108 ( 36.36 )
+	unmapped: 117296 ( 0.1349 )
+	placed: 3732 ( 0.0043 )
+	lowqual: 2162952 ( 2.4872 )
+INFO: The percent of mapped reads: 97.38 %
+
+----------------  Plotting  ----------------
+INFO: Generating quality control plots.
+################################################
+########%!       SLURPY PIPELINE      !%########
+################################################
+
+INFO:	Pipeline run name: 2501_018
+	Experiment type: atac
+	Reference path: ../../REFERENCES/T2T/GCA_009914755.4_T2T-CHM13v2.0_genomic.named.fasta
+	Tue Mar 14 10:23:12 2023
+INFO: Found properly paired reads.
+INFO: Running analysis on paired-end fastqs:
+
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R1_001.fastq.gz
+	./fastqs/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13_R2_001.fastq.gz
+
+------  Read Filtering and Splitting  ------
+INFO: 0 split pair-end fastqs and log - ./debug/2501_018-N701-N504__TAAGGCGA-AGAGTAGA__S13.fastp.splits.2501_018.txt - detected.
+	Skipping call to fastp.
+	If this seems incorrect remove the ./splits directory and start again.
+INFO: The total number of reads within pair 1 is: 86963986
+
+---------  Alignment with BWA-mem  ---------
+WARNING: No paired fastq files were detected.
+WARNING: No paired fastq files were detected.
+
+--------  Splitting BAM Alignments  --------
+INFO: Formating and submitting commands to split alignments and generate bam files.
+
+--------  Merging Split Alignments  --------
+INFO: Formating and submitting commands to merge bam files by:
+	mitochondiral alignments
+	genomic pairs
+	
+	unmapped (or placed) reads
+
+-----------  Duplicate Marking  ------------
+INFO: Duplicate analysis is not conducted on reads mapping to the mitochondrial DNA ( chrM ).
+INFO: Detected duplicate marked bam file: ./aligned/merged.2501_018.mark.bam
+
+-----------  BAM File Filtering  -----------
+INFO: Formating and submitting commands to filter merged bam files with samtools.
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.no_dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.dups.bam
+INFO: Filtered merged bam files with view options: ./aligned/merged.2501_018.filtq30.bam
+WARNING: Skipping bam file creation and filtering.
+-----------  Pruning BAM Files  ------------
+INFO: Formating and submitting commands to prune not used alignments.
+WARNING: Skipping file removal on: ./aligned/merged.2501_018.dups.bam
+WARNING: The count file -- ./debug/merged.2501_018.filtq30.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.notused.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.dups.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.chrM.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.unmapped.read.counts.txt -- was found, skipping the counting of its bam.
+WARNING: The count file -- ./debug/merged.2501_018.placed.read.counts.txt -- was found, skipping the counting of its bam.
+
+-------  Genome-wide Mapping Results  ------
+INFO:	BAM file totals:
+
+	Total: 86963986 ( - )
+	filtq30: 42567716 ( 48.9487 )
+	notused: 4788405 ( 5.5062 )
+	dups: 5703777 ( 6.5588 )
+	chrM: 31620108 ( 36.36 )
+	unmapped: 117296 ( 0.1349 )
+	placed: 3732 ( 0.0043 )
+	lowqual: 2162952 ( 2.4872 )
+INFO: The percent of mapped reads: 97.38 %
+
+----------------  Plotting  ----------------
+INFO: Generating quality control plots.
+
+--------------  Peak Calling  --------------
+INFO: 174759 -- Total peaks called by macs2.
+INFO: 130475 -- Unique loci called by mcas2.
+INFO: The frip score of merged.2501_018.filtq30.bam with peaks in 2501_018_peaks.narrowPeak is:
+	0.6
+
+----------------  Clean Up  ----------------
+INFO: Finished removing split fastq files, temporary bam files, and redundent bam files.
+
+----------------  Finished  ----------------
+INFO: End time: Tue Mar 14 10:28:55 2023
+INFO: Total run time (hours): 0.1
