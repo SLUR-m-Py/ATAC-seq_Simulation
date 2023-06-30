@@ -1,12 +1,18 @@
 # Dataframes and input
 
+## A549
+
+### mapping_logs
+
++ Output mapping logs from alignment of sequenced reads generated from A549 ATAC-seq experiments
+
+### mapping_stats
+
++ Output mapping statistics on A549 ATAC-seq experiments
+
 ## BEDS
 
-+  Genomic counts ber 10 kb of whole fragments per kilobase per million.
-
-    A549 - counts from ATAC-seq experiments performed in Roth et al. 
-
-    ENCODE - counts from ATAC-seq experimetns downloaded from the encode project (see Roth et al.)
++  Genomic counts ber 10 kb of whole fragments per kilobase per million for A549 and ENCODE samples
 
 ## ENCODE
 
@@ -15,7 +21,6 @@
 + stats - A directory holding the calculated mapping statistics for each ENCODE sample. 
 
 + data.names.txt - Names of used ENCODE samples
-
 
 ## IGV
 
@@ -33,13 +38,9 @@
 
 + Cryo_TRIAL2_chipr_peaks_all.bed - CHiPR IRD peaks from three, cryo-preserverd, replicate A549, ATAC-seq expeirments 
 
-## mapping_stats
-
-+ Output mapping statistics on A549 ATAC-seq experiments
-
 ## MISC
 
-Miscellaneous data generated druing and for analysis
+Miscellaneous data generated during and for analysis
 
 ### SYNTHETIC 
 
