@@ -8,7 +8,7 @@
 
 + bootlegger.py - Library of python code for conducting bootstrapping and statistical testing
 
-+ epigenomievisulaiztion.py - Library of python code for plotting epigenoimc datasets
++ epigenomevisulization.py - Library of python code for plotting epigenoimc datasets
 
 + mystatslib.py - Library of python code for conducting correlation analysis between ATAC-seq experiment
 
@@ -17,6 +17,8 @@
 ## Notebooks
 
 Notebooks should be run from top to bottom as presented here. 
+
++ Tutorial_on_co-zeros_WFpkm.ipynb - A small notebook with examples on calling and using python fucntions in epigenomevisulization.py.
 
 + Mapping_stats_and_counts_Table1_STable1.ipynb - Formats tables for publication of mapping statistics from output logs. 
 
