@@ -22,7 +22,8 @@ Jupyter notebooks and pythonic scripts used for simultaions, analysis, and visul
 ### BMC Bioinformatics Publication
 
 [Link to publication in BMC Bioinformatics](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-023-05553-0)
-If you use this software please cite the above paper:
+
+If you use this software please cite the above paper (citation below).
 
 ```
 @article{roth2023improved,
